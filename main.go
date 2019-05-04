@@ -25,6 +25,7 @@ func init() {
 }
 func main() {
 	password := flag.String("psd", "", "password")
+	ormt := flag.String("orm", "", "orm")
 	flag.Parse()
 	if *password != "" {
 		json := make(map[string]string)
@@ -33,7 +34,7 @@ func main() {
 		fmt.Println("密码设置成功")
 		return
 	}
-	orm.RunCommand()
+	orm.RunCommand(*ormt)
 	lib.InitJob()
 	beego.AddFuncMap("isColor", lib.IsColor)
 	if err := lib.ReadConf(); err != nil {
